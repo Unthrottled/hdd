@@ -22,8 +22,7 @@
 .idea/**/libraries
 build/
 .gradle/
-java/gradle/
-java/.gradle/
+gradle/
 
 
 # Mongo Explorer plugin:

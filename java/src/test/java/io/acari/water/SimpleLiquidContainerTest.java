@@ -22,6 +22,11 @@ public class SimpleLiquidContainerTest {
 
   @Test
   public void fetchTotalCapacityShouldReturnValueConstructedWith() {
+    long input = 500L;
+    long expectedResult = 500L;
+    SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+    long result = testSubject.fetchCurrentVolume();
+    assertEquals(expectedResult, result);
   }
 
   @Test

@@ -1,6 +1,9 @@
 package io.acari.water;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * Forged in the flames of battle by alex.
@@ -10,7 +13,11 @@ public class SimpleLiquidContainerTest {
 
   @Test
   public void constructorShouldThrowIllegalArgumentExceptionWhenGivenNegativeValue() {
-
+    try{
+      new SimpleLiquidContainer(-1);
+      fail();
+    } catch (IllegalArgumentException ignored){
+    }
   }
 
   @Test

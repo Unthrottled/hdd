@@ -8,7 +8,7 @@ public interface WaterSupply {
    * @return the maximum amount of water that can be supplied each invocation
    * @throws IllegalArgumentException if given a number less than zero
    */
-  long fetchWater(int desiredAmount);
+  long fetchWater(long desiredAmount);
 
   /**
    * @return the largest amount of water that can be returned from the water supply

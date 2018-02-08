@@ -79,25 +79,51 @@ public class SimpleLiquidContainerTest {
 
   @Test
   public void fetchCurrentVolumeReturnMaxCapacityWhenGivenValueEqualToTotalCapacity() {
-
+    long input = 500L;
+    long expectedResult = 500L;
+    SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+    testSubject.storeWater(input);
+    long result = testSubject.fetchCurrentVolume();
+    assertEquals(expectedResult, result);
   }
 
   @Test
   public void fetchCurrentVolumeReturnMaxCapacityWhenGivenValueGreaterThanTotalCapacity() {
-
+    long input = 500L;
+    long expectedResult = 500L;
+    SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+    testSubject.storeWater(input+1);
+    long result = testSubject.fetchCurrentVolume();
+    assertEquals(expectedResult, result);
   }
 
   @Test
   public void fetchCurrentVolumeReturnDesiredAmountWhenGivenValueLessThanTotalCapacity() {
-
+    long input = 500L;
+    long expectedResult = 499L;
+    SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+    testSubject.storeWater(input-1);
+    long result = testSubject.fetchCurrentVolume();
+    assertEquals(expectedResult, result);
   }
 
   @Test
   public void fetchCurrentVolumeReturnMaxCapacityWhenGivenValueOneLessThanTotalCapacityTwice() {
-
+    long input = 500L;
+    long expectedResult = 500L;
+    SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+    testSubject.storeWater(input-1);
+    testSubject.storeWater(input-1);
+    long result = testSubject.fetchCurrentVolume();
+    assertEquals(expectedResult, result);
   }
 
   @Test
   public void fetchCurrentVolumeShouldReturnZeroWhenNoWaterHasBeenStored() {
+    long input = 500L;
+    long expectedResult = 0L;
+    SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+    long result = testSubject.fetchCurrentVolume();
+    assertEquals(expectedResult, result);
   }
 }

@@ -25,7 +25,7 @@ public class SimpleLiquidContainerTest {
     long input = 500L;
     long expectedResult = 500L;
     SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
-    long result = testSubject.fetchCurrentVolume();
+    long result = testSubject.fetchTotalCapacity();
     assertEquals(expectedResult, result);
   }
 

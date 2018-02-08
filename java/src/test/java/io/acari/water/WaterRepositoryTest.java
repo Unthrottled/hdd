@@ -16,6 +16,7 @@ public class WaterRepositoryTest {
   public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFullWheSupplyHasLessThanAsked() {
     WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
     Mockito.when(waterSupply.fetchWater(any())).thenReturn(20L);
+    Mockito.when(waterSupply.fetchWater(20L)).thenReturn(20L);
     Mockito.when(waterSupply.fetchWater(10L)).thenReturn(10L);
     WaterRepository testSubject = new WaterRepository(waterSupply);
     LiquidContainer simpleLiquidContainer = new SimpleLiquidContainer(500);

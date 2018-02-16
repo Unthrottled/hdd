@@ -5,9 +5,6 @@ import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Forged in the flames of battle by alex.
- */
 public class WaterRepositoryTest {
 
 

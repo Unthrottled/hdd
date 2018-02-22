@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public class SimpleLiquidContainer implements LiquidContainer {
     private final long maxCapacity;
-    private long currentCapacity;
+    private Water currentCapacity;
 
     public SimpleLiquidContainer(long maxCapacity) {
         this.maxCapacity = Optional.of(maxCapacity)
@@ -18,17 +18,12 @@ public class SimpleLiquidContainer implements LiquidContainer {
     }
 
     @Override
-    public long storeWater(long volumeOfWater) {
-        long input = Optional.of(volumeOfWater)
-                .filter(v -> v > -1)
-                .orElseThrow(() -> new IllegalArgumentException("Cannot remove water!"));
-        long diff = maxCapacity - currentCapacity;
-        return diff >= input ? (currentCapacity += input) :
-                (currentCapacity = maxCapacity);
+    public Water storeWater(Water volumeOfWater) {
+        return null;
     }
 
     @Override
-    public long fetchCurrentVolume() {
+    public Water fetchCurrentVolume() {
         return currentCapacity;
     }
 }

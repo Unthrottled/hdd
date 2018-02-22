@@ -13,10 +13,10 @@ public interface LiquidContainer {
      * @return amount of water stored in container
      * @throws IllegalStateException if given number lower than zero.
      */
-    long storeWater(long volumeOfWater);
+    Water storeWater(Water volumeOfWater);
 
     /**
      * @return The amount of liquid currently stored in the container.
      */
-    long fetchCurrentVolume();
+    Water fetchCurrentVolume();
 }

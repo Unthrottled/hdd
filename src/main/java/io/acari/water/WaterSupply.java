@@ -8,6 +8,6 @@ public interface WaterSupply {
      * @return the requested amount of water that can be supplied each invocation
      * @throws IllegalArgumentException if given a number less than zero
      */
-    long fetchWater(long desiredAmount);
+    Water fetchWater(long desiredAmount);
 
 }

@@ -1,4 +1,4 @@
 package io.acari.water;
 
-public class Water {
+public interface Water {
 }

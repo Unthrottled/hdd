@@ -12,19 +12,6 @@ public class WaterRepository {
    * @return
    */
   public LiquidContainer fillContainerHalfWay(LiquidContainer liquidContainer) {
-    long halfWay = liquidContainer.fetchTotalCapacity() / 2;
-    long maximumFetchableWater = waterSupply.maximumFetchableWater();
-    boolean halfOrMore = maximumFetchableWater >= halfWay;
-    long tripsDivisor = halfOrMore ? halfWay : maximumFetchableWater;
-    long numberTrips = (long) Math.ceil(halfWay / (double) tripsDivisor);
-    for (int i = 0; i < numberTrips; i++) {
-      long diffToHalf = halfWay - liquidContainer.fetchCurrentVolume();
-      if (diffToHalf < maximumFetchableWater) {
-        liquidContainer.storeWater(diffToHalf);
-      } else {
-        liquidContainer.storeWater(maximumFetchableWater);
-      }
-    }
     return liquidContainer;
   }
 }

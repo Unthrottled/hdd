@@ -1,4 +1,8 @@
 package io.acari.water;
 
-public interface Water {
+public class Water extends Liquid {
+
+    public Water(long amount) {
+        super(amount);
+    }
 }

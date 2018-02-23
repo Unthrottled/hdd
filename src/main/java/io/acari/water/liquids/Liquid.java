@@ -1,9 +1,9 @@
-package io.acari.water;
+package io.acari.water.liquids;
 
 public class Liquid {
     private final long amount;
 
-    public Liquid(long amount) {
+    Liquid(long amount) {
         this.amount = amount;
     }
 

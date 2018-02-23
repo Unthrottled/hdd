@@ -1,5 +1,7 @@
 package io.acari.water;
 
+import io.acari.water.liquids.Liquid;
+
 import java.util.Optional;
 
 public class SimpleLiquidContainer implements LiquidContainer {

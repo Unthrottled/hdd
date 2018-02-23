@@ -1,5 +1,7 @@
 package io.acari.water;
 
+import io.acari.water.liquids.Liquid;
+
 public interface LiquidContainer {
     /**
      * @return the total volume container, regardless of fill level.

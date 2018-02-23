@@ -1,5 +1,7 @@
 package io.acari.water;
 
+import io.acari.water.liquids.Water;
+
 public interface WaterSupply {
 
     /**

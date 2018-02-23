@@ -1,8 +1,8 @@
-package io.acari.water;
+package io.acari.water.liquids;
 
 public class Water extends Liquid {
 
-    public Water(long amount) {
+    Water(long amount) {
         super(amount);
     }
 }

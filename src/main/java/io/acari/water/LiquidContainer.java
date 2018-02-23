@@ -11,11 +11,10 @@ public interface LiquidContainer {
     /**
      * Fills the container with the desired amount of water.
      *
-     * @param volumeOfWater desired amount of water to place in container, must be greater than zero
-     * @return amount of water stored in container
-     * @throws IllegalStateException if given number lower than zero.
+     * @param liquid desired amount of water to place in container, must be greater than zero
+     * @return amount of liquid stored in container
      */
-    Liquid storeWater(Liquid volumeOfWater);
+    Liquid storeLiquid(Liquid liquid);
 
     /**
      * @return The amount of liquid currently stored in the container.

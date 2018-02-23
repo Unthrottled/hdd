@@ -25,7 +25,7 @@ public class SimpleLiquidContainer implements LiquidContainer {
     }
 
     @Override
-    public Liquid fetchCurrentVolume() {
-        return currentCapacity;
+    public Optional<Liquid> fetchCurrentVolume() {
+        return Optional.ofNullable(currentCapacity);
     }
 }

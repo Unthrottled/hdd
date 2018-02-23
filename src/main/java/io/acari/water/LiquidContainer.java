@@ -2,6 +2,8 @@ package io.acari.water;
 
 import io.acari.water.liquids.Liquid;
 
+import java.util.Optional;
+
 public interface LiquidContainer {
     /**
      * @return the total volume container, regardless of fill level.
@@ -19,5 +21,5 @@ public interface LiquidContainer {
     /**
      * @return The amount of liquid currently stored in the container.
      */
-    Liquid fetchCurrentVolume();
+    Optional<Liquid> fetchCurrentVolume();
 }

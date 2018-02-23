@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public class SimpleLiquidContainer implements LiquidContainer {
     private final long maxCapacity;
-    private Water currentCapacity;
+    private Liquid currentCapacity;
 
     public SimpleLiquidContainer(long maxCapacity) {
         this.maxCapacity = Optional.of(maxCapacity)
@@ -18,12 +18,12 @@ public class SimpleLiquidContainer implements LiquidContainer {
     }
 
     @Override
-    public Water storeWater(Water volumeOfWater) {
+    public Liquid storeWater(Liquid volumeOfWater) {
         return null;
     }
 
     @Override
-    public Water fetchCurrentVolume() {
+    public Liquid fetchCurrentVolume() {
         return currentCapacity;
     }
 }

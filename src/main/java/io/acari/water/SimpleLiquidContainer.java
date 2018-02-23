@@ -20,7 +20,7 @@ public class SimpleLiquidContainer implements LiquidContainer {
     }
 
     @Override
-    public Liquid storeWater(Liquid volumeOfWater) {
+    public Liquid storeLiquid(Liquid liquid) {
         return null;
     }
 

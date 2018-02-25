@@ -7,9 +7,7 @@ public class SimpleLiquidContainer implements LiquidContainer {
     private Liquid currentCapacity;
 
     public SimpleLiquidContainer(long maxCapacity) {
-        this.maxCapacity = Optional.of(maxCapacity)
-                .filter(c -> c > -1)
-                .orElseThrow(() -> new IllegalArgumentException("Cannot store negatives!"));
+        this.maxCapacity = maxCapacity;
     }
 
     @Override

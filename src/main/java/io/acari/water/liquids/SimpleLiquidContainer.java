@@ -1,6 +1,4 @@
-package io.acari.water;
-
-import io.acari.water.liquids.Liquid;
+package io.acari.water.liquids;
 
 import java.util.Optional;
 

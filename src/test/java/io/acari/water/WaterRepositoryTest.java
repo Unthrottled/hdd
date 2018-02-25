@@ -1,6 +1,9 @@
 package io.acari.water;
 
+import io.acari.water.liquids.LiquidContainer;
+import io.acari.water.liquids.SimpleLiquidContainer;
 import io.acari.water.liquids.Water;
+import io.acari.water.liquids.WaterSupply;
 import org.junit.Test;
 import org.mockito.Mockito;
 

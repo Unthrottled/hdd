@@ -1,4 +1,4 @@
-package io.acari.water;
+package io.acari.water.liquids;
 
 import io.acari.water.liquids.Liquid;
 

@@ -22,4 +22,20 @@ public class LiquidTest {
         long actualResult = testGuy.getAmount();
         assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    public void equalsShouldReturnFalseWhenNull() {
+        assertFalse(new Liquid(0).equals(null));
+    }
+
+    @Test
+    public void equalsShouldReturnTrueWhenSameAmount() {
+        assertFalse(new Liquid(0).equals(new Liquid(0)));
+    }
+
+    @Test
+    public void equalsShouldReturnTrueWhenSameObject() {
+        Liquid liquid = new Liquid(0);
+        assertFalse(liquid.equals(liquid));
+    }
 }

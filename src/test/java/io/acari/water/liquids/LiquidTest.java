@@ -30,12 +30,12 @@ public class LiquidTest {
 
     @Test
     public void equalsShouldReturnTrueWhenSameAmount() {
-        assertFalse(new Liquid(0).equals(new Liquid(0)));
+        assertTrue(new Liquid(0).equals(new Liquid(0)));
     }
 
     @Test
     public void equalsShouldReturnTrueWhenSameObject() {
         Liquid liquid = new Liquid(0);
-        assertFalse(liquid.equals(liquid));
+        assertTrue(liquid.equals(liquid));
     }
 }

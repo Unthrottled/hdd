@@ -1,7 +1,5 @@
 package io.acari.water.liquids;
 
-import io.acari.water.liquids.Liquid;
-
 import java.util.Optional;
 
 public interface LiquidContainer {

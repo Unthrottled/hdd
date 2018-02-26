@@ -50,4 +50,30 @@ public class WaterRepositoryTest {
                 .map(new Water(131)::equals)
                 .orElse(false));
     }
+
+
+    @Test
+    public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFullWhenAlreadyIsHalfFull() {
+        WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
+        Mockito.when(waterSupply.fetchWater(131L)).thenReturn(new Water(131L));
+        WaterRepository testSubject = new WaterRepository(waterSupply);
+        LiquidContainer simpleLiquidContainer = new SimpleLiquidContainer(263);
+        LiquidContainer result = testSubject.fillContainerHalfWay(simpleLiquidContainer);
+        assertTrue(result.fetchCurrentVolume()
+                .map(new Water(131)::equals)
+                .orElse(false));
+    }
+
+
+    @Test
+    public void fillContainerHalfWayShouldThrowAnExceptionWhenContainerIsMoreThanHalfFull() {
+        WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
+        Mockito.when(waterSupply.fetchWater(131L)).thenReturn(new Water(131L));
+        WaterRepository testSubject = new WaterRepository(waterSupply);
+        LiquidContainer simpleLiquidContainer = new SimpleLiquidContainer(263);
+        LiquidContainer result = testSubject.fillContainerHalfWay(simpleLiquidContainer);
+        assertTrue(result.fetchCurrentVolume()
+                .map(new Water(131)::equals)
+                .orElse(false));
+    }
 }

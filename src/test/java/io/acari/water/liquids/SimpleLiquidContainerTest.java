@@ -1,9 +1,11 @@
 package io.acari.water.liquids;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.Assert.*;
 
 public class SimpleLiquidContainerTest {
@@ -24,7 +26,7 @@ public class SimpleLiquidContainerTest {
         long expectedResult = 500L;
         SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
         long result = testSubject.fetchTotalCapacity();
-        assertEquals(expectedResult, result);
+        assertThat(result).isEqualTo(expectedResult);
     }
 
     @Test
@@ -33,7 +35,7 @@ public class SimpleLiquidContainerTest {
         Liquid expectedResult = new Water(500L);
         SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
         Liquid result = testSubject.storeLiquid(new Water(input));
-        assertEquals(expectedResult, result);
+        assertThat(result).isEqualTo(expectedResult);
     }
 
     @Test
@@ -42,7 +44,7 @@ public class SimpleLiquidContainerTest {
         Liquid expectedResult = new Water(500L);
         SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
         Liquid result = testSubject.storeLiquid(new Water(input + 1L));
-        assertEquals(expectedResult, result);
+        assertThat(result).isEqualTo(expectedResult);
     }
 
     @Test
@@ -51,7 +53,7 @@ public class SimpleLiquidContainerTest {
         Liquid expectedResult = new Water(499L);
         SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
         Liquid result = testSubject.storeLiquid(new Water(input - 1L));
-        assertEquals(expectedResult, result);
+        assertThat(result).isEqualTo(expectedResult);
     }
 
     @Test
@@ -62,7 +64,7 @@ public class SimpleLiquidContainerTest {
         Liquid testInput = new Water(input - 1L);
         testSubject.storeLiquid(testInput);
         Liquid result = testSubject.storeLiquid(testInput);
-        assertEquals(expectedResult, result);
+        assertThat(result).isEqualTo(expectedResult);
     }
 
     @Test
@@ -119,6 +121,6 @@ public class SimpleLiquidContainerTest {
         long input = 500L;
         SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
         Optional<Liquid> result = testSubject.fetchCurrentVolume();
-        assertTrue(!result.isPresent());
+        assertFalse(result.isPresent());
     }
 }

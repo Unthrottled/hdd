@@ -1,4 +1,8 @@
 package io.acari.water.liquids;
 
-public class WaterFaucet {
+public class WaterFaucet implements WaterSupply {
+    @Override
+    public Water fetchWater(long desiredAmount) {
+        return null;
+    }
 }

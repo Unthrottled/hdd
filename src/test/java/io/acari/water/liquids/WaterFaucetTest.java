@@ -14,4 +14,20 @@ public class WaterFaucetTest {
         Water result = waterFaucet.fetchWater(42L);
         Assertions.assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    public void fetchWaterShouldReturnDesiredAmountWhenGivenZero() {
+        Water expected =  new Water(0L);
+        WaterFaucet waterFaucet = new WaterFaucet();
+        Water result = waterFaucet.fetchWater(0L);
+        Assertions.assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    public void fetchWaterShouldThrowIllegalArgumentExceptionWhenGivenNumberLessThanZero() {
+        try {
+            new WaterFaucet().fetchWater(-1L);
+            fail();
+        } catch (IllegalArgumentException ignore){}
+    }
 }

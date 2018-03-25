@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public class SimpleLiquidContainer implements LiquidContainer {
     private final long maxCapacity;
-    private Liquid liquidStored = new Liquid(0);
+    private Liquid liquidStored;
 
     public SimpleLiquidContainer(long maxCapacity) {
         this.maxCapacity = Optional.of(maxCapacity)
@@ -19,11 +19,16 @@ public class SimpleLiquidContainer implements LiquidContainer {
 
     @Override
     public Liquid storeLiquid(Liquid liquid) {
-        return liquidStored.addLiquid(pourCorrectAmount(liquid));
+        Liquid currentLiquid = fetchCurrentVolume()
+                .orElse(new Liquid(0L));
+        this.liquidStored = currentLiquid.addLiquid(pourCorrectAmount(liquid));
+        return liquidStored;
     }
 
     private Liquid pourCorrectAmount(Liquid liquid) {
-        long capacityLeft = maxCapacity - liquidStored.getAmount();
+        long capacityLeft = maxCapacity - fetchCurrentVolume()
+                .map(Liquid::getAmount)
+                .orElse(0L);
         boolean willStillBeEmpty = capacityLeft > liquid.getAmount();
         return willStillBeEmpty ?
                 liquid :

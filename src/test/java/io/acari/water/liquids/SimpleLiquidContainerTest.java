@@ -33,8 +33,10 @@ public class SimpleLiquidContainerTest {
         long input = 500L;
         Liquid expectedResult = new Water(500L);
         SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
-        Liquid result = testSubject.storeLiquid(new Water(input));
+        Water liquid = new Water(input);
+        Liquid result = testSubject.storeLiquid(liquid);
         assertThat(result).isEqualTo(expectedResult);
+        assertThat(liquid.getAmount()).isEqualTo(0L);
     }
 
     @Test
@@ -42,8 +44,10 @@ public class SimpleLiquidContainerTest {
         long input = 500L;
         Liquid expectedResult = new Water(500L);
         SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
-        Liquid result = testSubject.storeLiquid(new Water(input + 1L));
+        Water liquid = new Water(input + 1L);
+        Liquid result = testSubject.storeLiquid(liquid);
         assertThat(result).isEqualTo(expectedResult);
+        assertThat(liquid.getAmount()).isEqualTo(1L);
     }
 
     @Test
@@ -51,8 +55,10 @@ public class SimpleLiquidContainerTest {
         long input = 500L;
         Liquid expectedResult = new Water(499L);
         SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
-        Liquid result = testSubject.storeLiquid(new Water(input - 1L));
+        Water liquid = new Water(input - 1L);
+        Liquid result = testSubject.storeLiquid(liquid);
         assertThat(result).isEqualTo(expectedResult);
+        assertThat(liquid.getAmount()).isEqualTo(0L);
     }
 
     @Test
@@ -62,8 +68,11 @@ public class SimpleLiquidContainerTest {
         SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
         Liquid testInput = new Water(input - 1L);
         testSubject.storeLiquid(testInput);
-        Liquid result = testSubject.storeLiquid(testInput);
+        assertThat(testInput.getAmount()).isEqualTo(0L);
+        Liquid liquid = new Liquid(input);
+        Liquid result = testSubject.storeLiquid(liquid);
         assertThat(result).isEqualTo(expectedResult);
+        assertThat(liquid.getAmount()).isEqualTo(input - 1L);
     }
 
     @Test

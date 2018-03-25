@@ -2,9 +2,12 @@ package io.acari.water.liquids;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
 
 public class Liquid {
     private long amount;
+    Function<Long, ? extends Liquid> instanceFactory = Liquid::new;
+
     /**
      * @param amount any number above -1
      * @throws IllegalArgumentException if given any number below zero
@@ -30,9 +33,9 @@ public class Liquid {
      * @return this liquid instance with the added amount from the liquid provided.
      */
     public Liquid addLiquid(Liquid liquid) {
-        this.amount = getAmount() + liquid.reduceVolumeBy(liquid.getAmount())
+        this.amount = liquid.reduceVolumeBy(liquid.getAmount())
                 .map(Liquid::getAmount)
-                .orElse(0L);
+                .orElse(0L) + getAmount();
         return this;
     }
 
@@ -57,7 +60,7 @@ public class Liquid {
                     this.amount = getAmount() - reducingVolume;
                     return reducingVolume;
                 })
-                .map(Liquid::new);
+                .map(instanceFactory);
     }
 
     @Override

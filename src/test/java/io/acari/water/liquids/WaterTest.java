@@ -2,6 +2,7 @@ package io.acari.water.liquids;
 
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
 public class WaterTest {
@@ -51,6 +52,49 @@ public class WaterTest {
     public void equalsShouldReturnTrueWhenSameObject() {
         Water liquid = new Water(0);
         assertTrue(liquid.equals(liquid));
+    }
+
+    @Test
+    public void addAmountShouldReturnWaterWhenAddedWater(){
+        Water input = new Water(9000L);
+        Water testWater = new Water(1L);
+        Water result = testWater.addLiquid(input);
+        assertThat(result != testWater).isFalse();
+        assertThat(result.getAmount()).isEqualTo(9001L);
+        assertThat(testWater.getAmount()).isEqualTo(9001L);
+        assertThat(input.getAmount()).isEqualTo(0L);
+    }
+
+    @Test
+    public void addAmountShouldReturnSameAmount(){
+        Water testWater = new Water(1L);
+        Water result = testWater.addLiquid(testWater);
+        assertThat(result.getAmount()).isEqualTo(1L);
+        assertThat(testWater.getAmount()).isEqualTo(1L);
+    }
+
+    @Test
+    public void addAmountShouldReturnLiquidWhenAddedWaterAsLiquid(){
+        Liquid input = new Water(9000L);
+        Water testWater = new Water(1L);
+        Liquid result = testWater.addLiquid(input);
+        assertThat(result != testWater).isFalse();
+        assertThat(result instanceof Water).isTrue();
+        assertThat(result.getAmount()).isEqualTo(9001);
+        assertThat(testWater.getAmount()).isEqualTo(9001L);
+        assertThat(input.getAmount()).isEqualTo(0L);
+    }
+
+    @Test
+    public void addAmountShouldReturnLiquidWhenAddedLiquid(){
+        Liquid input = new Liquid(9000L);
+        Water testWater = new Water(1L);
+        Liquid result = testWater.addLiquid(input);
+        assertThat(result != testWater).isFalse();
+        assertThat(result instanceof Water).isTrue();
+        assertThat(result.getAmount()).isEqualTo(9001);
+        assertThat(testWater.getAmount()).isEqualTo(9001L);
+        assertThat(input.getAmount()).isEqualTo(0L);
     }
 
 }

@@ -19,9 +19,15 @@ public class SimpleLiquidContainer implements LiquidContainer {
 
     @Override
     public Liquid storeLiquid(Liquid liquid) {
-        Liquid currentLiquid = fetchCurrentVolume()
-                .orElse(new Liquid(0L));
-        this.liquidStored = currentLiquid.addLiquid(pourCorrectAmount(liquid));
+        Optional<Liquid> optionalLiquid = fetchCurrentVolume();
+        if (optionalLiquid.isPresent()) {
+            Liquid currentLiquid = optionalLiquid.get();
+            this.liquidStored = currentLiquid.addLiquid(pourCorrectAmount(liquid));
+        } else if (liquid.getAmount() > maxCapacity) {
+            this.liquidStored = liquid.reduceVolumeBy(maxCapacity).orElseThrow(()->new IllegalStateException("Should have been able to remove max capacity amount of liquid!"));
+        } else {
+            this.liquidStored = liquid.reduceVolumeBy(liquid.getAmount()).orElseThrow(() -> new IllegalStateException("Should have been able to reduce by current amount!"));
+        }
         return liquidStored;
     }
 

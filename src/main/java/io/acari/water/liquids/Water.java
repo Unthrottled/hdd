@@ -4,6 +4,11 @@ public class Water extends Liquid {
 
     public Water(long amount) {
         super(amount);
+        instanceFactory = Water::new;
+    }
+
+    public Water addLiquid(Water liquid) {
+        return (Water) super.addLiquid(liquid);
     }
 
     @Override

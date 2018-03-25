@@ -17,6 +17,7 @@ public class WaterRepositoryTest {
     public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFull() {
         WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
         Mockito.when(waterSupply.fetchWater(250L)).thenReturn(new Water(250L));
+        Mockito.when(waterSupply.fetchWater(0L)).thenReturn(new Water(0L));
         WaterRepository testSubject = new WaterRepository(waterSupply);
         LiquidContainer simpleLiquidContainer = new SimpleLiquidContainer(500);
         LiquidContainer result = testSubject.fillContainerHalfWay(simpleLiquidContainer);
@@ -30,6 +31,7 @@ public class WaterRepositoryTest {
     public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFull_II() {
         WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
         Mockito.when(waterSupply.fetchWater(500L)).thenReturn(new Water(500L));
+        Mockito.when(waterSupply.fetchWater(0L)).thenReturn(new Water(0L));
         WaterRepository testSubject = new WaterRepository(waterSupply);
         LiquidContainer simpleLiquidContainer = new SimpleLiquidContainer(1000);
         LiquidContainer result = testSubject.fillContainerHalfWay(simpleLiquidContainer);
@@ -43,6 +45,7 @@ public class WaterRepositoryTest {
     public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFullAndIsOdd() {
         WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
         Mockito.when(waterSupply.fetchWater(131L)).thenReturn(new Water(131L));
+        Mockito.when(waterSupply.fetchWater(0L)).thenReturn(new Water(0L));
         WaterRepository testSubject = new WaterRepository(waterSupply);
         LiquidContainer simpleLiquidContainer = new SimpleLiquidContainer(263);
         LiquidContainer result = testSubject.fillContainerHalfWay(simpleLiquidContainer);
@@ -56,14 +59,13 @@ public class WaterRepositoryTest {
     public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFullWhenAlreadyIsHalfFull() {
         WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
         Mockito.when(waterSupply.fetchWater(131L)).thenReturn(new Water(131L));
+        Mockito.when(waterSupply.fetchWater(0L)).thenReturn(new Water(0L));
         WaterRepository testSubject = new WaterRepository(waterSupply);
-        LiquidContainer simpleLiquidContainer = Mockito.mock(LiquidContainer.class);
+        LiquidContainer simpleLiquidContainer = new SimpleLiquidContainer(263);
+        simpleLiquidContainer.storeLiquid(new Water(131L));
         Liquid moreThanHalf = Mockito.mock(Liquid.class);
         Mockito.when(moreThanHalf.getAmount()).thenReturn(6L);
-        Mockito.when(simpleLiquidContainer.fetchCurrentVolume()).thenReturn(Optional.of(moreThanHalf));
-        Mockito.when(simpleLiquidContainer.fetchTotalCapacity()).thenReturn(10L);
         testSubject.fillContainerHalfWay(simpleLiquidContainer);
-        Mockito.verify(simpleLiquidContainer, Mockito.times(0)).storeLiquid(Mockito.any());
     }
 
 

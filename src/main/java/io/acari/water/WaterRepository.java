@@ -1,5 +1,6 @@
 package io.acari.water;
 
+import io.acari.water.liquids.Liquid;
 import io.acari.water.liquids.LiquidContainer;
 import io.acari.water.liquids.WaterSupply;
 
@@ -19,6 +20,14 @@ public class WaterRepository {
      *                                  (we are half full people here)
      */
     public LiquidContainer fillContainerHalfWay(LiquidContainer liquidContainer) {
+        long goalAmount = liquidContainer.fetchTotalCapacity() / 2;
+        Liquid currentVolume = liquidContainer.fetchCurrentVolume().isPresent() ?
+                liquidContainer.fetchCurrentVolume()
+                        .filter(liquid -> liquid.getAmount() <= goalAmount)
+                        .orElseThrow(() -> new IllegalStateException("Container is too full!")) :
+                waterSupply.fetchWater(0);
+
+        liquidContainer.storeLiquid(waterSupply.fetchWater(goalAmount - currentVolume.getAmount()));
         return liquidContainer;
     }
 }

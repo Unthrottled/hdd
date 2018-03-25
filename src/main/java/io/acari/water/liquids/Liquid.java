@@ -14,31 +14,53 @@ public class Liquid {
      */
     Liquid(long amount) {
         this.amount = sanitizeVolume(amount)
-        .orElseThrow(()->new IllegalArgumentException("Cannot create liquid instance with value " + amount));
+                .orElseThrow(() -> new IllegalArgumentException("Cannot create liquid instance with value " + amount));
     }
 
     private Optional<Long> sanitizeVolume(long amount) {
         return Optional.of(amount)
-        .filter(aLong -> aLong > -1);
+                .filter(aLong -> aLong > -1);
     }
 
     public long getAmount() {
         return amount;
     }
-    public Liquid addLiquid(Liquid liquid){
-        this.amount = getAmount() + liquid.getAmount();
+
+    /**
+     * Moves the amount of liquid provided to this instance.
+     *
+     * @param liquid liquid to be drained and added to this instance.
+     * @return this liquid instance with the added amount from the liquid provided.
+     */
+    public Liquid addLiquid(Liquid liquid) {
+        this.amount = getAmount() + liquid.reduceVolumeBy(liquid.getAmount())
+                .map(Liquid::getAmount)
+                .orElse(0L);
         return this;
     }
 
-    public Optional<? extends Liquid> reduceVolumeBy(long subtractor){
-        return sanitizeVolume(subtractor)
+    /**
+     * Reduces the amount of liquid stored in this instance.
+     * <p>
+     * Will not return any liquid if asked more than the current amount
+     * stored in instance.
+     *
+     * @param volumeToReduceBy the amount of liquid to remove from this instance
+     * @return The amount of liquid ranging from 0 to current volume.
+     */
+    public Optional<? extends Liquid> reduceVolumeBy(long volumeToReduceBy) {
+        return sanitizeVolume(volumeToReduceBy)
                 .flatMap(this::reduceAmount);
     }
 
-    private Optional<? extends Liquid> reduceAmount(long volume){
-        long amount = getAmount();
-        this.amount = volume > amount ? 0 : amount - volume;
-        return Optional.of(instanceFactory.apply(volume));
+    private Optional<? extends Liquid> reduceAmount(long volume) {
+        return sanitizeVolume(volume)
+                .filter(goodVolume -> goodVolume <= getAmount())
+                .map(reducingVolume -> {
+                    this.amount = getAmount() - reducingVolume;
+                    return reducingVolume;
+                })
+                .map(instanceFactory);
     }
 
     @Override

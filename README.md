@@ -8,4 +8,4 @@ In addition, we will learn how to make a refreshing glass of water.
 
 This is the code sample from the blog post:
 
-## [HERE!](http://blog.acari.io/2018/10/10/Hydration-Driven-Devolpment.html)
+## [HERE!](http://blog.acari.io/java/2018/10/10/Hydration-Driven-Devolpment.html)

@@ -24,6 +24,7 @@ public class WaterRepositoryTest {
         assertTrue(result.fetchCurrentVolume()
                 .map(new Water(250)::equals)
                 .orElse(false));
+        fail();
     }
 
 

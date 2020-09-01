@@ -1,6 +1,7 @@
 package io.acari.water;
 
 import io.acari.water.liquids.*;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -14,7 +15,8 @@ public class WaterRepositoryTest {
 
 
     @Test
-    public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFull() {
+    public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFull() throws InterruptedException {
+//        foo
         WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
         Mockito.when(waterSupply.fetchWater(250L)).thenReturn(new Water(250L));
         Mockito.when(waterSupply.fetchWater(0L)).thenReturn(new Water(0L));
@@ -24,11 +26,14 @@ public class WaterRepositoryTest {
         assertTrue(result.fetchCurrentVolume()
                 .map(new Water(250)::equals)
                 .orElse(false));
-        fail();
+//aoeu
+//        Thread.sleep(10000);
+//        fail();
     }
 
 
     @Test
+//    @Ignore
     public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFull_II() {
         WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
         Mockito.when(waterSupply.fetchWater(500L)).thenReturn(new Water(500L));
